@@ -1,9 +1,5 @@
 from django.db import models
 
-from communication.models import CommunicationDevice
-from companies.models import Company
-
-
 class Robot(models.Model):
     TYPE_CHOICES = [
         ("four_wheel", "Four Wheel"),
@@ -19,11 +15,11 @@ class Robot(models.Model):
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
 
     communication_device = models.OneToOneField(
-        CommunicationDevice, on_delete=models.SET_NULL, null=True, related_name="robot"
+        'communication.CommunicationDevice', on_delete=models.SET_NULL, null=True, related_name="robot"
     )
 
     company = models.ForeignKey(
-        Company, on_delete=models.CASCADE, related_name="robots"
+        'companies.Company', on_delete=models.CASCADE, related_name="robots"
     )
 
     manufacturer = models.ForeignKey(

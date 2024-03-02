@@ -1,5 +1,4 @@
 from django.db import models
-from robots.models import Robot
 
 
 class CommunicationDevice(models.Model):
