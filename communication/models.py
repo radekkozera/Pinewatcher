@@ -10,11 +10,6 @@ class CommunicationDevice(models.Model):
 
     form_factor = models.CharField(max_length=100, choices=FORM_TYPES)
 
-    location = models.OneToOneField("Location", on_delete=models.SET_NULL, null=True)
-
-    telemetry = models.OneToOneField("Telemetry", on_delete=models.SET_NULL, null=True)
-
-
 class Telemetry(models.Model):
     timestamp = models.DateTimeField()
 
@@ -23,6 +18,8 @@ class Telemetry(models.Model):
     temparture = models.IntegerField()
 
     pressure = models.IntegerField()
+
+    comunication_device = models.ForeignKey(CommunicationDevice, on_delete=models.CASCADE, related_name="telemetry")
 
     def __str__(self):
         return (
@@ -36,6 +33,8 @@ class Location(models.Model):
     lattitude = models.FloatField()
 
     longitude = models.FloatField()
+
+    communication_device = models.ForeignKey(CommunicationDevice, on_delete=models.CASCADE, related_name="location")
 
     def __str__(self):
         return f"{self.timestamp} - {self.lattitude} - {self.longitude}"

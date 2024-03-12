@@ -30,3 +30,21 @@ def create_company(request):
 
     return JsonResponse({"id": company.id}, status=201)
 
+def get_all_companies(request):
+    companies = Company.objects.all()
+    return JsonResponse(
+        {
+            "companies": [
+                {
+                    "id": company.id,
+                    "name": company.name,
+                    "industry": company.industry,
+                    "location": company.location,
+                    "description": company.description,
+                    "contact_person": company.contact_person,
+                    "krs": company.krs,
+                }
+                for company in companies
+            ]
+        }
+    )

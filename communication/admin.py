@@ -3,7 +3,7 @@ from communication.models import CommunicationDevice, Telemetry, Location
 
 @admin.register(CommunicationDevice)
 class CommunicationDeviceAdmin(admin.ModelAdmin):
-    list_display = ["form_factor", "location", "telemetry"]
+    list_display = ["form_factor", "telemetry", "location"]
 
 @admin.register(Telemetry)
 class TelemetryAdmin(admin.ModelAdmin):
